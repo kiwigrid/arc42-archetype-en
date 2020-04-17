@@ -1,0 +1,13 @@
+// asciidoc settings for EN (English)
+// ==================================
+:toc-title: table of contents
+
+// enable table-of-contents
+:toc:
+
+// where are images located?
+:imagesdir: images
+
+// preview only: will be set by pom.xml
+:document-logo: logo.png
+:document-title: document-title

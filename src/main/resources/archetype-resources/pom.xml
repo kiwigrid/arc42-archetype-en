@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <groupId>${groupId}</groupId>
+    <artifactId>${artifactId}</artifactId>
+    <version>${version}</version>
+
+    <name>${projectName}</name>
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- documentation -->
+        <asciidoctor.maven.plugin.version>1.5.7.1</asciidoctor.maven.plugin.version>
+        <asciidoctorj.version>1.6.0</asciidoctorj.version>
+        <jruby.version>9.2.5.0</jruby.version>
+        <asciidoctorj.diagram.version>1.5.11</asciidoctorj.diagram.version>
+        <asciidoctorj.pdf.version>1.5.3</asciidoctorj.pdf.version>
+
+        <!-- APIs -->
+    </properties>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <!-- added the resources plugin to copy images before adoc transform starts. -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/generated-docs/images</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/doc/arc42/images</directory>
+                                </resource>
+                                <resource>
+                                    <directory>src/main/doc/arc42/01</directory>
+                                    <includes>
+                                        <include>*.png</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>src/main/doc/arc42/02</directory>
+                                    <includes>
+                                        <include>*.png</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>src/main/doc/arc42/03</directory>
+                                    <includes>
+                                        <include>*.png</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>src/main/doc/arc42/04</directory>
+                                    <includes>
+                                        <include>*.png</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>src/main/doc/arc42/05</directory>
+                                    <includes>
+                                        <include>*.png</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>src/main/doc/arc42/06</directory>
+                                    <includes>
+                                        <include>*.png</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>src/main/doc/arc42/07</directory>
+                                    <includes>
+                                        <include>*.png</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>src/main/doc/arc42/08</directory>
+                                    <includes>
+                                        <include>*.png</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>src/main/doc/arc42/09</directory>
+                                    <includes>
+                                        <include>*.png</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>src/main/doc/arc42/10</directory>
+                                    <includes>
+                                        <include>*.png</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>src/main/doc/arc42/11</directory>
+                                    <includes>
+                                        <include>*.png</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>src/main/doc/arc42/12</directory>
+                                    <includes>
+                                        <include>*.png</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctor-maven-plugin</artifactId>
+                <version>${asciidoctor.maven.plugin.version}</version>
+                <dependencies>
+                    <!-- Comment this section to use the default jruby artifact provided by the plugin -->
+                    <dependency>
+                        <groupId>org.jruby</groupId>
+                        <artifactId>jruby-complete</artifactId>
+                        <version>${jruby.version}</version>
+                    </dependency>
+                    <!-- Comment this section to use the default AsciidoctorJ artifact provided by the plugin -->
+                    <dependency>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctorj</artifactId>
+                        <version>${asciidoctorj.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctorj-diagram</artifactId>
+                        <version>${asciidoctorj.diagram.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctorj-pdf</artifactId>
+                        <version>${asciidoctorj.pdf.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <sourceDirectory>src/main/doc/arc42</sourceDirectory>
+                    <!-- Attributes common to all output formats -->
+                    <attributes>
+                        <sourcedir>${project.build.sourceDirectory}</sourcedir>
+                        <project-version>${project.version}</project-version>
+                        <project-name>${project.name}</project-name>
+                        <imagesdir>${project.build.directory}/generated-docs/images</imagesdir>
+                        <imagesoutdir>${project.build.directory}/generated-docs/images</imagesoutdir>
+
+                        <!-- add more project specific attributes here -->
+                        <document-title>${project.name} Architecture</document-title>
+                        <document-logo>logo.png</document-logo>
+                    </attributes>
+                    <requires>
+                        <require>asciidoctor-diagram</require>
+                    </requires>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>asciidoc-to-html</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html5</backend>
+                            <sourceHighlighter>coderay</sourceHighlighter>
+                            <attributes>
+                                <toc/>
+                                <!--<toc>left</toc>-->
+                                <icons>font</icons>
+                                <sectanchors>true</sectanchors>
+                                <!-- set the idprefix to blank -->
+                                <idprefix/>
+                                <idseparator>-</idseparator>
+                                <docinfo1>true</docinfo1>
+                            </attributes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-pdf-doc</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <!-- Since 1.5.0-alpha.9 PDF back-end can use 'rouge' as well as 'coderay'
+                            for source highlighting -->
+                            <!-- Due to a known issue on windows, it is recommended to use 'coderay' until an new version of 'rouge' is released.
+                                    see discussions: https://github.com/asciidoctor/asciidoctor-maven-examples/pull/58
+                                                     https://github.com/asciidoctor/asciidoctorj-pdf/issues/3
+                                                     https://github.com/jneen/rouge/issues/661
+                            -->
+                            <sourceHighlighter>coderay</sourceHighlighter>
+                            <attributes>
+                                <icons>font</icons>
+                                <pagenums/>
+                                <toc/>
+                                <idprefix/>
+                                <idseparator>-</idseparator>
+                            </attributes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>
