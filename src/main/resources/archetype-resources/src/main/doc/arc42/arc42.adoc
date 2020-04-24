@@ -3,8 +3,10 @@
 //
 // ====================================
 
+// configure EN settings for asciidoc
 include::config.adoc[]
 
+// logo and title are defined in the config, but are overriden via pom.xml
 = image:{document-logo}[logo] {document-title}
 // toc-title definition MUST follow document title without blank line!
 :toc-title: Table of Contents
@@ -24,7 +26,6 @@ ifdef::basebackend-html[]
 ++++
 endif::basebackend-html[]
 
-// configure EN settings for asciidoc
 
 
 

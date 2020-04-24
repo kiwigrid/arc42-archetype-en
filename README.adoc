@@ -1,0 +1,102 @@
+== What?
+
+This is a Maven Archetype to create a new maven project or module covering a projects architecture documentation.
+
+https://maven.apache.org/guides/introduction/introduction-to-archetypes.html
+
+The archetype will create a ready to go module containing the https://github.com/arc42/arc42-template[arc42 template] +
+documents and the module `pom.xml` creating an `html` and `pdf` output. 
+
+== Why?
+
+Available Archetypes get lack of pdf export or plantuml support.
+
+== How?
+
+=== Build locally
+
+----
+mvn install
+----
+
+=== Use
+
+----
+mvn archetype:generate \                                                                                                           
+  -DarchetypeGroupId=com.kiwigrid \
+  -DarchetypeArtifactId=arc42-maven-en \
+  -DarchetypeVersion=1.0.0 \
+  -DgroupId=org.sample \
+  -DartifactId=documentation
+----
+
+The generated module will look like
+
+----
+./documentation
+|-- pom.xml
+'-- src
+    '-- main
+        '-- doc
+            '-- arc42
+                '-- 01
+                    '-- ...adoc
+                   ...
+                 '-- 12
+                     '-- ...adoc
+                 '-- images
+                     '--  logo.png
+                 '-- arc42.adoc
+                 '-- config.adoc
+----
+
+==== Content
+
+* `arc42.adoc` the main document to render.
+* `config.adoc` document settings defaults
+* `logo.png` the default document logo
+* `01` ... `12` the arc42 template chapter from the https://github.com/arc42/arc42-template["Golden Master" (github)]
+** the chapters are organized as sub folder instead on file name prefixes only
+* `images` the common document images
+* `pom.xml` covers the build settings with the major settings
+
+----
+<project ... >
+    ...
+    <name>your project title</name>
+    ...
+    <build>
+        <plugins>
+            ... <!--1-->
+            <plugin>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctor-maven-plugin</artifactId>
+                ...
+                <configuration>
+                    ...
+                    <attributes>
+                        ...
+                        <document-name>your documentation title</document-name> <!--2-->
+                        <document-logo>logo.png</document-logo> <!--3-->
+                    </attributes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>asciidoc-to-html</id>
+                        ...
+                    </execution>
+                    <execution>
+                        <id>asciidoc-to-pdf</id>
+                        ...
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>                     
+----
+
+<1> copies the image resources
+<2> the documentation title is initialized with the project name
+<3> the documentation header page logo

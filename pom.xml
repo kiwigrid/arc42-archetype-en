@@ -4,10 +4,56 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.kiwigrid.tools</groupId>
-    <artifactId>arc42-maven</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <groupId>com.kiwigrid</groupId>
+    <artifactId>arc42-archetype-en</artifactId>
+    <version>1.0.0</version>
     <packaging>maven-archetype</packaging>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+
+    <description>
+        A maven archetype creating a maven module/project
+        initialized with arc42 document template in english based on
+        "golden master" (https://github.com/arc42/arc42-template).
+    </description>
+    <url>https://github.com/kiwigrid/helm-maven-plugin</url>
+    <organization>
+        <name>Kiwigrid GmbH</name>
+        <url>https://www.kiwigrid.com</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Sven Krause</name>
+            <email>sven.krause@kiwigrid.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/kiwigrid/arc42-archetype-en.git</connection>
+        <developerConnection>scm:git:git@github.com:kiwigrid/arc42-archetype-en.git</developerConnection>
+        <url>https://github.com/kiwigrid/arc42-archetype-en/tree/master</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-nexus</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-nexus</id>
+            <name>Nexus Release Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
 
     <build>
         <extensions>
@@ -18,6 +64,7 @@
             </extension>
         </extensions>
     </build>
+
 
 
 </project>

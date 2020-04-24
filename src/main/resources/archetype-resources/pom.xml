@@ -21,8 +21,6 @@
         <jruby.version>9.2.5.0</jruby.version>
         <asciidoctorj.diagram.version>1.5.11</asciidoctorj.diagram.version>
         <asciidoctorj.pdf.version>1.5.3</asciidoctorj.pdf.version>
-
-        <!-- APIs -->
     </properties>
 
     <build>
