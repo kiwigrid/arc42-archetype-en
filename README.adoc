@@ -24,7 +24,7 @@ mvn install
 ----
 mvn archetype:generate \                                                                                                           
   -DarchetypeGroupId=com.kiwigrid \
-  -DarchetypeArtifactId=arc42-maven-en \
+  -DarchetypeArtifactId=arc42-archetype-en \
   -DarchetypeVersion=1.0.0 \
   -DgroupId=org.sample \
   -DartifactId=documentation
